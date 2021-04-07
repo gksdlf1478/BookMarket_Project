@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="test.project.ko.board">
+  
+  	<!-- 전체 목록  -->
+  	<select id="ListAll" resultType="BoardDTO">
+  		select 
+  			bno,
+  			boardname,
+  			boardtext,
+  			boardreguser,
+  			boardregdate,
+  			IFNULL(boardupdateuser,0),
+  			IFNULL(boardupdatedate,0),
+  			boardreadcnt
+  		from board
+  	</select>  	
+  	
+  	<!-- 글 선택 조회 -->
+  	<select id="BoardDetail" parameterType="java.lang.Integer" resultType="BoardDTO">
+  		select 
+  			bno,
+  			boardname,
+  			boardtext,
+  			boardreguser,
+  			boardregdate,
+  			IFNULL(boardupdateuser, 0),
+  			IFNULL(boardupdatedate, 0),
+  			boardreadcnt
+  		from board
+  		where bno = #{bno}
+  	</select>
+  	
+  	<!-- 글 조회수 증가 -->
+  	<update id="ReadCnt" parameterType="int">
+	    update board
+	    set boardreadcnt=boardreadcnt+1
+	    where bno = #{bno}
+  	</update>
+  	
+	<!-- 글 작성 -->
+  	<insert id="Register" parameterType="BoardDTO">
+  		insert into board(boardname, boardtext, boardreguser, boardregdate, boardupdateuser, boardupdatedate)
+  		values(#{boardname}, #{boardtext}, #{boardreguser}, DATE_FORMAT(now(), '%Y-%m-%d'), ' ', ' ')
+  	</insert>
+  	
+  	<!-- 글 수정 -->
+  	<update id="BoardUpdate" parameterType="BoardDTO">
+	    update board
+	    set boardname=#{boardname}, 
+	    	boardtext=#{boardtext},
+	    	boardregdate=DATE_FORMAT(now(), '%Y-%m-%d'),
+	    	boardreguser = #{boardreguser}
+	    where bno = #{bno}
+  	</update>
+  	
+  	<!-- 글 삭제 -->
+  	 <delete id="Delete" parameterType="int">
+	    delete from board
+	    where bno = #{bno}
+  	</delete>
+  	
+  	<!-- 총 게시글 갯수 출력 -->
+	<select id="countBoard" resultType="int">
+		SELECT COUNT(*) FROM BOARD
+	</select>
+
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="selectBoard" resultType="BoardDTO">
+		select
+			@rownum:=@rownum+1 as no,
+			board.*
+		from board
+		where (@rownum:=0)=0
+		order by bno desc
+		limit #{start}, #{cntPerPage}
+	</select>
+	
+	<!-- 게시글 검색(이름) -->
+	<select id="selectBoardN" parameterType="String" resultType="BoardDTO">
+  		select 
+  			bno,
+  			boardname,
+  			boardtext,
+  			boardreguser,
+  			boardregdate,
+  			IFNULL(boardupdateuser, 0),
+  			IFNULL(boardupdatedate, 0),
+  			boardreadcnt
+  		from board
+  		where 1=1
+  		and boardname = #{SearchData}
+	</select>
+  	
+  	<!-- 게시글 검색(작성자) -->
+	<select id="selectBoardU" parameterType="String" resultType="BoardDTO">
+  		select 
+  			bno,
+  			boardname,
+  			boardtext,
+  			boardreguser,
+  			boardregdate,
+  			IFNULL(boardupdateuser, 0),
+  			IFNULL(boardupdatedate, 0),
+  			boardreadcnt
+  		from board
+  		where 1=1
+  		and boardreguser = #{SearchData}
+	</select>
+  	
+  	<!-- 댓글 조회 -->
+	<select id="ReplyList" parameterType="int" resultType="ReplyDTO">
+  		select 
+  			reno,
+  			rewriter,
+  			rememo
+  		from board_reply
+		where reno = #{reno}
+	</select>
+	
+  </mapper>
