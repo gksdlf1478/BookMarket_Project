@@ -6,6 +6,7 @@
  	<typeAliases>
  		<typeAlias alias="BoardDTO" type="test.project.ko.board.BoardDTO"/>
  		<typeAlias alias="ReplyDTO" type="test.project.ko.board.ReplyDTO"/>
+ 		<typeAlias alias="MemberDTO" type="test.project.ko.member.MemberDTO"/>
  		<typeAlias alias="PagingVO" type="test.project.ko.util.PagingVO"/>
  	</typeAliases>
  </configuration>

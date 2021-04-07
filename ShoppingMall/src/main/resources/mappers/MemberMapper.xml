@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="test.project.ko.member">
+  
+  <select id="Login" parameterType="MemberDTO" resultType="int">
+  	SELECT 
+  		COUNT(*)
+  	FROM MEMBER
+  	WHERE 1=1
+ 	AND member_email = #{member_email}
+ 	AND member_pw = #{member_pw}
+  </select>
+  
+  <insert id="Join" parameterType="MemberDTO">
+	INSERT INTO member
+		(
+			member_email,
+			pub_no,
+			type_no,
+			member_pw,
+			member_nickname,
+			member_phone,
+			member_gender,
+			member_birth,
+			member_date,
+			member_point,
+			member_platform,
+			member_del
+		)
+		VALUES
+		(
+			#{member_email},
+			0,
+			0,
+			#{member_pw},
+			#{member_nickname},
+			#{member_phone},
+			#{member_gender},
+			#{member_birth},
+			now(),
+			#{member_point},
+			'own',
+			0
+		)	
+  </insert>
+  
+  <update id="UpdateMember" parameterType="MemberDTO">
+	  update member
+	  set member_pw =#{member_pw} 
+		  ,member_nickname =#{member_nickname} 
+		  ,member_phone =#{member_phone} 		  
+  </update>
+	
+  </mapper>

@@ -27,16 +27,16 @@ public class MemberController {
 	MemberService memberervice; 	
 	
 	// 회원가입 페이지로 이동
-	@RequestMapping(value="/member/login", method=RequestMethod.GET)
+	@RequestMapping(value="/member/join", method=RequestMethod.GET)
 	public String MoveJoin() {
 		return "member/join";
 	}
 	
 	// 회원가입
-	@RequestMapping(value="/member/login", method=RequestMethod.POST)
-	public String Join(Model model, MemberDTO memberDTO) {
-		
-		memberDTO.toString();
+	@RequestMapping(value="/member/join", method=RequestMethod.POST)
+	public String Join(Model model, MemberDTO memberDTO) {		
+
+		System.out.println(memberDTO.toString()); 
 		
 		return "main";
 	}	
@@ -51,7 +51,7 @@ public class MemberController {
 	@RequestMapping(value="/member/login", method=RequestMethod.POST)
 	public String Login(Model model, MemberDTO memberDTO) {
 		
-		memberDTO.toString();
+		System.out.println(memberDTO.toString()); 
 		
 		return "main";
 	}

@@ -1,11 +1,10 @@
-home.jsphome.jsp<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <%@ page session="false" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <head>
-  <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -26,12 +25,18 @@ home.jsphome.jsp<%@ page language="java" contentType="text/html; charset=UTF-8"	
   <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="${contextPath}/member/login" href="#">로그인</a>
+      <a class="${contextPath}/member/login" href="${contextPath}/member/login">로그인</a>
     </li>
     <li class="nav-item">
-      <a class="${contextPath}/member/join" href="#">회원가입</a>
+      <a class="${contextPath}/member/join" href="${contextPath}/member/join">회원가입</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+        <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+        <li class="nav-item">
       <a class="nav-link" href="#">Link 3</a>
     </li>
   </ul>
