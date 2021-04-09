@@ -12,6 +12,9 @@ public interface MemberService {
 	
 	// 회원가입
 	public int Join(MemberDTO memberDTO);
+	
+	// 아이디 중복체크
+	public int EmailCheck(String member_email);
 
 	// 회원정보 수정
 	public int UpdateMember(MemberDTO memberDTO);

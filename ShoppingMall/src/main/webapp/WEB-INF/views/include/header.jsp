@@ -37,7 +37,7 @@
 				<a class="nav-link" href="#">Link 3</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Link 3</a>
+				<a class="nav-link" href="#">사용자 : ${login.member_nickname }</a>
 			</li>
 	    </ul>
 	</nav>

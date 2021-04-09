@@ -17,6 +17,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -56,6 +57,17 @@ public class MemberController {
 		rttr.addFlashAttribute("msg", "회원가입 실패"); // 로그인 실패 메시지 출력		
 		return "member/join";
 	}	
+	
+	//이메일 중복체크
+	@ResponseBody 
+	@RequestMapping(value="/member/emailcheck", method=RequestMethod.POST)
+	public int EmailCheck(@RequestParam("member_email") String member_email) {
+		System.out.println("컨트롤러로 받은 데이터 : "+member_email);
+		// 입력한 이메일을 조건으로 DB에 동일한 데이터가 있는지 count 확인
+		int result = memberService.EmailCheck(member_email);	
+		System.out.println("컨트롤러 데이터 처리 후 결과 : "+result);
+		return result;
+	}
 	
 	// 로그인 페이지로 이동
 	@RequestMapping(value="/member/login", method=RequestMethod.GET)

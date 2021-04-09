@@ -25,12 +25,20 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.Join(memberDTO);
 	}
+	
+	@Override
+	public int EmailCheck(String member_email) {
+		// TODO Auto-generated method stub
+		return memberDAO.EmailCheck(member_email);
+	}
 
 	@Override
 	public int UpdateMember(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		return memberDAO.UpdateMember(memberDTO);
 	}
+
+
 
 
 

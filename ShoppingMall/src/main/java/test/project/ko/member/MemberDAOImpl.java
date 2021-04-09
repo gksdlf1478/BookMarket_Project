@@ -28,12 +28,20 @@ public class MemberDAOImpl implements MemberDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(nameSpace + ".Join",memberDTO);
 	}
+	
+	@Override
+	public int EmailCheck(String member_email) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".EmailCheck",member_email);
+	}
 
 	@Override
 	public int UpdateMember(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(nameSpace + ".UpdateMember",memberDTO);
 	}
+
+
 
 	
 }

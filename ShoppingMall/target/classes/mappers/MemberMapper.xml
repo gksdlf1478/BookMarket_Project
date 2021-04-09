@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="test.project.ko.member">
   
+  <!-- 로그인 -->
   <select id="Login" parameterType="MemberDTO" resultType="MemberDTO">
 	SELECT 
 		member_nickname, 
@@ -14,6 +15,7 @@
 	AND member_pw = #{member_pw}
   </select>
   
+  <!-- 회원가입 -->
   <insert id="Join" parameterType="MemberDTO">
 	INSERT INTO member
 		(
@@ -47,6 +49,16 @@
 		)	
   </insert>
   
+  <!-- 아이디 중복 체크 -->
+   <select id="EmailCheck" parameterType="String" resultType="int">
+	SELECT 
+		count(*)
+	FROM MEMBER
+	WHERE 1=1
+	AND member_email = #{member_email}
+  </select>
+  
+  <!-- 회원정보 수정 -->
   <update id="UpdateMember" parameterType="MemberDTO">
 	update member
 	set member_pw =#{member_pw} 
