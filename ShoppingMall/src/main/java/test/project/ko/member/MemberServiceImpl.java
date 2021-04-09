@@ -15,7 +15,7 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO memberDAO;
 
 	@Override
-	public int Login(MemberDTO memberDTO) {
+	public MemberDTO Login(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		return memberDAO.Login(memberDTO);
 	}

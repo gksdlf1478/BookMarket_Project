@@ -30,9 +30,10 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
+//		String msg = "move";
 		
 		model.addAttribute("serverTime", formattedDate );
-		
+//		model.addAttribute("msg", msg );
 		return "main";
 	}
 	

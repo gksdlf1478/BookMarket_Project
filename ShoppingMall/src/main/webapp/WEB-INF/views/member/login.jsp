@@ -5,6 +5,16 @@
 <%@include file ="../include/header.jsp" %>
 
 <title>로그인</title>
+
+<script>	
+	$(document).ready(function() {	
+		var msg = '${msg}';
+		if(msg!=''){
+			alert(msg);
+		}
+	})
+</script>
+
 <form method="POST">
     <div class="form-group">
       <label for="email">Email:</label>
@@ -24,7 +34,4 @@
 
 <%@include file ="../include/footer.jsp" %>
 
-<script>	
-	$(document).ready(function() {		
-	})
-</script>
+

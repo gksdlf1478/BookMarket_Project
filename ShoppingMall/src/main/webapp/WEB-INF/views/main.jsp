@@ -4,11 +4,19 @@
 
 <%@include file ="include/header.jsp" %>
 
-내용부분
+현재시각 : ${serverTime }
+<br>
+받은 메시지 :${msg }
+<br>
+세션 : ${login.member_nickname }
 
 <%@include file ="include/footer.jsp" %>
 
 <script>	
-	$(document).ready(function() {		
+	$(document).ready(function() {	
+		var msg = '${msg}';
+		if(msg!=''){
+			alert(msg);
+		}
 	})
 </script>

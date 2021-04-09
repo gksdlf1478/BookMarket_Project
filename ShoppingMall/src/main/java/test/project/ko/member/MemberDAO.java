@@ -12,7 +12,7 @@ import test.project.ko.util.PagingVO;
 public interface MemberDAO {
 
 	// 로그인
-	public int Login(MemberDTO memberDTO);
+	public MemberDTO Login(MemberDTO memberDTO);
 	
 	// 회원가입
 	public int Join(MemberDTO memberDTO);

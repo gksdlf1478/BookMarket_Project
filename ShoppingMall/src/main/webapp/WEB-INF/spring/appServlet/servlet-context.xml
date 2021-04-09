@@ -21,8 +21,19 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="test.project.ko" />
+	<!-- MessageSource -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<beans:property name="defaultEncoding">
+	<beans:value>utf-8</beans:value>
+	</beans:property>
+	   <beans:property name="basenames">
+	        <beans:list>
+	               <beans:value>messages/messages_ko</beans:value>
+	        </beans:list>
+	   </beans:property>	
+	</beans:bean>
 	
+	<context:component-scan base-package="test.project.ko" />	
 	
 	
 </beans:beans>

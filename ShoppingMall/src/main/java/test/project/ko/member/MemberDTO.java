@@ -1,36 +1,49 @@
 package test.project.ko.member;
 
-public class MemberDTO {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
+
+public class MemberDTO {
+	
+	
+	@NotEmpty
+	@Email
 	private String member_email;
+	
+	@NotEmpty
+	@Pattern(regexp="^[0-9a-zA-Z!@#$%^&]*$")  // "/^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{6,}$/gm")
+	private String member_pw;
+	
+	@NotEmpty
+	@Length(min=2, max=5)
+	private String member_nickname;
+	
+	@NotEmpty
+	@Length(min=9)
+	private String member_phone;
+	
+	@NotEmpty
+	private String member_gender;
+	
+	@NotEmpty
+	private String member_birth;	
+	
+	
 	private int pub_no;
 	private int type_no;
-	private String member_pw;
-	private String member_nickname;
-	private String member_phone;
-	private String member_gender;
-	private String member_birth;
+	private String member_del;
 	private String member_date;
 	private int member_point;
 	private String member_platform;
-	private String member_del;
+	
 	public String getMember_email() {
 		return member_email;
 	}
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
-	}
-	public int getPub_no() {
-		return pub_no;
-	}
-	public void setPub_no(int pub_no) {
-		this.pub_no = pub_no;
-	}
-	public int getType_no() {
-		return type_no;
-	}
-	public void setType_no(int type_no) {
-		this.type_no = type_no;
 	}
 	public String getMember_pw() {
 		return member_pw;
@@ -62,6 +75,24 @@ public class MemberDTO {
 	public void setMember_birth(String member_birth) {
 		this.member_birth = member_birth;
 	}
+	public int getPub_no() {
+		return pub_no;
+	}
+	public void setPub_no(int pub_no) {
+		this.pub_no = pub_no;
+	}
+	public int getType_no() {
+		return type_no;
+	}
+	public void setType_no(int type_no) {
+		this.type_no = type_no;
+	}
+	public String getMember_del() {
+		return member_del;
+	}
+	public void setMember_del(String member_del) {
+		this.member_del = member_del;
+	}
 	public String getMember_date() {
 		return member_date;
 	}
@@ -80,21 +111,16 @@ public class MemberDTO {
 	public void setMember_platform(String member_platform) {
 		this.member_platform = member_platform;
 	}
-	public String getMember_del() {
-		return member_del;
-	}
-	public void setMember_del(String member_del) {
-		this.member_del = member_del;
-	}
-	
 	@Override
 	public String toString() {
-		return "MemberDTO [member_email=" + member_email + ", pub_no=" + pub_no + ", type_no=" + type_no
-				+ ", member_pw=" + member_pw + ", member_nickname=" + member_nickname + ", member_phone=" + member_phone
-				+ ", member_gender=" + member_gender + ", member_birth=" + member_birth + ", member_date=" + member_date
-				+ ", member_point=" + member_point + ", member_platform=" + member_platform + ", member_del="
-				+ member_del + "]";
+		return "MemberDTO [member_email=" + member_email + ", member_pw=" + member_pw + ", member_nickname="
+				+ member_nickname + ", member_phone=" + member_phone + ", member_gender=" + member_gender
+				+ ", member_birth=" + member_birth + ", pub_no=" + pub_no + ", type_no=" + type_no + ", member_del="
+				+ member_del + ", member_date=" + member_date + ", member_point=" + member_point + ", member_platform="
+				+ member_platform + "]";
 	}
+	
+	
 	
 	
 	

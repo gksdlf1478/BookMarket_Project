@@ -18,21 +18,21 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String nameSpace= "test.project.ko.member";
 	
 	@Override
-	public int Login(MemberDTO memberDTO) {
+	public MemberDTO Login(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(nameSpace + ".Login");
+		return sqlSession.selectOne(nameSpace + ".Login",memberDTO);
 	}
 
 	@Override
 	public int Join(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(nameSpace + ".Join");
+		return sqlSession.insert(nameSpace + ".Join",memberDTO);
 	}
 
 	@Override
 	public int UpdateMember(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
-		return sqlSession.update(nameSpace + ".UpdateMember");
+		return sqlSession.update(nameSpace + ".UpdateMember",memberDTO);
 	}
 
 	
