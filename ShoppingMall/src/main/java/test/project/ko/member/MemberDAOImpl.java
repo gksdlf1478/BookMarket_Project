@@ -41,6 +41,12 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.update(nameSpace + ".UpdateMember",memberDTO);
 	}
 
+	@Override
+	public MemberDTO Mypage(int member_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".Mypage", member_no);
+	}
+
 
 
 	

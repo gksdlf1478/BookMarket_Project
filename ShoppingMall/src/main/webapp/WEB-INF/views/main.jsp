@@ -8,7 +8,9 @@
 <br>
 받은 메시지 :${msg }
 <br>
-세션 : ${login.member_nickname }
+세션   이름 : ${login.member_nickname }
+<br>
+세션 회원번호: ${login.member_no }
 
 <%@include file ="include/footer.jsp" %>
 

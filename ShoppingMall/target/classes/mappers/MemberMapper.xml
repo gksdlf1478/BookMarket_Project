@@ -7,6 +7,7 @@
   <!-- 로그인 -->
   <select id="Login" parameterType="MemberDTO" resultType="MemberDTO">
 	SELECT 
+		member_no,
 		member_nickname, 
 		member_point
 	FROM MEMBER
@@ -62,8 +63,27 @@
   <update id="UpdateMember" parameterType="MemberDTO">
 	update member
 	set member_pw =#{member_pw} 
-  		,member_nickname =#{member_nickname} 
-		,member_phone =#{member_phone} 		  
+  		,member_nickname = #{member_nickname} 
+		,member_phone = #{member_phone} 		
+	where member_no= #{member_no}  
   </update>
-	
+  
+  <!-- 마이페이지 -->
+  <select id="Mypage" parameterType="int" resultType="MemberDTO">
+	select 
+		member_email,
+		pub_no,
+		type_no,
+		member_pw,
+		member_nickname,
+		member_phone,
+		member_gender,
+		member_birth,
+		member_date,
+		member_point,
+		member_platform,
+		member_del
+	from member
+	where member_no = #{member_no}
+  </select>
   </mapper>

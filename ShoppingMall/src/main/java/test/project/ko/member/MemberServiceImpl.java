@@ -38,6 +38,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.UpdateMember(memberDTO);
 	}
 
+	@Override
+	public MemberDTO Mypage(int member_no) {
+		// TODO Auto-generated method stub
+		return memberDAO.Mypage(member_no);
+	}
+
 
 
 

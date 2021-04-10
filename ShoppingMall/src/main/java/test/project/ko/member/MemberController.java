@@ -32,7 +32,7 @@ public class MemberController {
 	
 	// 회원가입 페이지로 이동
 	@RequestMapping(value="/member/join", method=RequestMethod.GET)
-	public String MoveJoin(@ModelAttribute MemberDTO memberDTO) throws Exception {
+	public String Join(@ModelAttribute MemberDTO memberDTO) throws Exception {
 		return "member/join";
 	}
 	
@@ -40,6 +40,7 @@ public class MemberController {
 	@RequestMapping(value="/member/join", method=RequestMethod.POST)
 	public String Join(@ModelAttribute @Valid MemberDTO memberDTO, BindingResult result, RedirectAttributes rttr ) throws Exception {		
 		// @Valid 대상 바로 뒤에 BindingResult를 선언해야 에러가 발생하지 않는다
+		
 		// 에러가 있는지 검사
 		if( result.hasErrors() ) {
 			// 에러를 List로 저장
@@ -62,16 +63,14 @@ public class MemberController {
 	@ResponseBody 
 	@RequestMapping(value="/member/emailcheck", method=RequestMethod.POST)
 	public int EmailCheck(@RequestParam("member_email") String member_email) {
-		System.out.println("컨트롤러로 받은 데이터 : "+member_email);
 		// 입력한 이메일을 조건으로 DB에 동일한 데이터가 있는지 count 확인
 		int result = memberService.EmailCheck(member_email);	
-		System.out.println("컨트롤러 데이터 처리 후 결과 : "+result);
 		return result;
 	}
 	
 	// 로그인 페이지로 이동
 	@RequestMapping(value="/member/login", method=RequestMethod.GET)
-	public String MoveLogin() {
+	public String Login() {
 		return "member/login";
 	}
 	
@@ -87,5 +86,34 @@ public class MemberController {
 		}
 		model.addAttribute("msg", msg); // 로그인 실패 메시지 출력
 		return "member/login";
+	}
+	
+	// 마이페이지
+	@RequestMapping(value = "/member/mypage", method = RequestMethod.GET) 
+	public String Mypage(@RequestParam("member_no")int member_no, Model model) throws Exception {		
+		MemberDTO mypage = memberService.Mypage(member_no);
+		model.addAttribute("mypage", mypage);
+		return "member/mypage";
+	}
+	
+	// 회원 정보 수정 페이지로 이동
+	@RequestMapping(value = "/member/memberupdate", method = RequestMethod.GET) 
+	public String MoveMemberUpdate(@RequestParam("member_no")int member_no, Model model) throws Exception {			
+		MemberDTO mypage = memberService.Mypage(member_no);
+		model.addAttribute("mypage", mypage);
+		return "member/member_update";
+	}
+	
+	// 회원 정보 수정	
+	@RequestMapping(value = "/member/memberupdate", method = RequestMethod.POST) 
+	public String MemberUpdate(@ModelAttribute("memberDTO") MemberDTO memberDTO, Model model) throws Exception {			
+		int chk = memberService.UpdateMember(memberDTO);
+		int member_no = memberDTO.getMember_no();
+		if(chk > 0) {
+			model.addAttribute("msg", "회원정보를 변경했습니다."); // 로그인 실패 메시지 출력
+			return "redirect:/member/mypage?member_no="+member_no;
+		}
+		model.addAttribute("msg", "회원정보 변경 실패"); // 로그인 실패 메시지 출력
+		return "member/member_update";
 	}
 }

@@ -32,6 +32,7 @@ public class MemberDTO {
 	private String member_birth;	
 	
 	
+	private int member_no;
 	private int pub_no;
 	private int type_no;
 	private String member_del;
@@ -39,6 +40,14 @@ public class MemberDTO {
 	private int member_point;
 	private String member_platform;
 	
+	
+	
+	public int getMember_no() {
+		return member_no;
+	}
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
+	}
 	public String getMember_email() {
 		return member_email;
 	}

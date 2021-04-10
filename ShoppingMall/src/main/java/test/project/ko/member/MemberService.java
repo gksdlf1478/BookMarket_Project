@@ -19,4 +19,6 @@ public interface MemberService {
 	// 회원정보 수정
 	public int UpdateMember(MemberDTO memberDTO);
 	
+	// 마이페이지
+	public MemberDTO Mypage(int member_no);
 }
